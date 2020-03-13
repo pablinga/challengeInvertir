@@ -81,6 +81,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resources.EN.resx" />
     <EmbeddedResource Include="Resources\Resources.ES.resx" />
+    <EmbeddedResource Include="Resources\Resources.BR.resx" />
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

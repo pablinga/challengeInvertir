@@ -61,6 +61,15 @@ namespace CodingChallenge.Data.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        internal static string Area {
+            get {
+                return ResourceManager.GetString("Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Círculo.
         /// </summary>
         internal static string Circle {
@@ -106,6 +115,24 @@ namespace CodingChallenge.Data.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rectángulo.
+        /// </summary>
+        internal static string Rectangle {
+            get {
+                return ResourceManager.GetString("Rectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectángulos.
+        /// </summary>
+        internal static string Rectangles {
+            get {
+                return ResourceManager.GetString("Rectangles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to formas.
         /// </summary>
         internal static string Shapes {
@@ -129,6 +156,33 @@ namespace CodingChallenge.Data.Resources {
         internal static string Squares {
             get {
                 return ResourceManager.GetString("Squares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOTAL.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trapecio.
+        /// </summary>
+        internal static string Trapeze {
+            get {
+                return ResourceManager.GetString("Trapeze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trapecios.
+        /// </summary>
+        internal static string Trapezoids {
+            get {
+                return ResourceManager.GetString("Trapezoids", resourceCulture);
             }
         }
         

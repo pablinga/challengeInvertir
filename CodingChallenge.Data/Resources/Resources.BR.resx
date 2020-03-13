@@ -127,37 +127,37 @@
     <value>Círculos</value>
   </data>
   <data name="Empty" xml:space="preserve">
-    <value>Lista vacía de formas!</value>
+    <value>Lista vazia de formas!</value>
   </data>
   <data name="Header" xml:space="preserve">
-    <value>Reporte de Formas</value>
+    <value>Relatório de Formulário</value>
   </data>
   <data name="Perimeter" xml:space="preserve">
     <value>Perimetro</value>
   </data>
   <data name="Rectangle" xml:space="preserve">
-    <value>Rectángulo</value>
+    <value>Rectangulo</value>
   </data>
   <data name="Rectangles" xml:space="preserve">
-    <value>Rectángulos</value>
+    <value>Rectangulos</value>
   </data>
   <data name="Shapes" xml:space="preserve">
     <value>formas</value>
   </data>
   <data name="Square" xml:space="preserve">
-    <value>Cuadrado</value>
+    <value>Quadrado</value>
   </data>
   <data name="Squares" xml:space="preserve">
-    <value>Cuadrados</value>
+    <value>Quadrados</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>TOTAL</value>
   </data>
   <data name="Trapeze" xml:space="preserve">
-    <value>Trapecio</value>
+    <value>Trapézio</value>
   </data>
   <data name="Trapezoids" xml:space="preserve">
-    <value>Trapecios</value>
+    <value>Trapézios</value>
   </data>
   <data name="Triangle" xml:space="preserve">
     <value>Triángulo</value>

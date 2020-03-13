@@ -23,9 +23,16 @@ namespace CodingChallenge.Data.Tests
         }
 
         [TestCase]
+        public void TestResumenListaVaciaFormasEnPortugues()
+        {
+            Assert.AreEqual("<h1>Lista vazia de formas!</h1>",
+                FormaGeometrica.Imprimir(new List<Forma>(), FormaGeometrica.Portugues));
+        }
+
+        [TestCase]
         public void TestResumenListaConUnCuadrado()
         {
-            var cuadrados = new List<Forma> {new Cuadrado(FormaGeometrica.Cuadrado, 5)};
+            var cuadrados = new List<Forma> { new Cuadrado(FormaGeometrica.Cuadrado, 5) };
 
             var resumen = FormaGeometrica.Imprimir(cuadrados, FormaGeometrica.Castellano);
 
@@ -58,14 +65,15 @@ namespace CodingChallenge.Data.Tests
                 new Cuadrado(FormaGeometrica.Cuadrado, 2),
                 new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 9),
                 new Circulo(FormaGeometrica.Circulo, 2.75m),
-                new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 4.2m)
-            };
+                new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 4.2m),
+                new Rectangulo(FormaGeometrica.Rectangulo, 12, 3)
+        };
 
             var resumen = FormaGeometrica.Imprimir(formas, FormaGeometrica.Ingles);
 
             Assert.AreEqual(
-                "<h1>Shapes report</h1>2 Squares | Area 29 | Perimeter 28 <br/>2 Circles | Area 13.01 | Perimeter 18.06 <br/>3 Triangles | Area 49.64 | Perimeter 51.6 <br/>TOTAL:<br/>7 shapes Perimeter 97.66 Area 91.65",
-                resumen);
+                    "<h1>Shapes report</h1>2 Squares | Area 29 | Perimeter 28 <br/>2 Circles | Area 13.01 | Perimeter 18.06 <br/>3 Triangles | Area 49.64 | Perimeter 51.6 <br/>1 Rectangle | Area 36 | Perimeter 30 <br/>TOTAL:<br/>8 shapes Perimeter 127.66 Area 127.65",
+                    resumen);
         }
 
         [TestCase]
@@ -88,5 +96,29 @@ namespace CodingChallenge.Data.Tests
                 "<h1>Reporte de Formas</h1>2 Cuadrados | Area 29 | Perimetro 28 <br/>2 Círculos | Area 13,01 | Perimetro 18,06 <br/>3 Triángulos | Area 49,64 | Perimetro 51,6 <br/>TOTAL:<br/>7 formas Perimetro 97,66 Area 91,65",
                 resumen);
         }
+
+        [TestCase]
+        public void TestResumenListaConMasTiposEnPortugues()
+        {
+            var formas = new List<Forma>
+            {
+                new Cuadrado(FormaGeometrica.Cuadrado, 5),
+                new Circulo(FormaGeometrica.Circulo, 3),
+                new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 4),
+                new Cuadrado(FormaGeometrica.Cuadrado, 2),
+                new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 9),
+                new Circulo(FormaGeometrica.Circulo, 2.75m),
+                new TrianguloEquilatero(FormaGeometrica.TrianguloEquilatero, 4.2m),
+                new Rectangulo(FormaGeometrica.Rectangulo, 12, 3)
+            };
+
+            var resumen = FormaGeometrica.Imprimir(formas, FormaGeometrica.Portugues);
+
+            Assert.AreEqual(
+                "<h1>Relatório de Formulário</h1>2 Quadrados | Area 29 | Perimetro 28 <br/>2 Círculos | Area 13,01 | Perimetro 18,06 <br/>3 Triángulos | Area 49,64 | Perimetro 51,6 <br/>1 Rectangulo | Area 36 | Perimetro 30 <br/>TOTAL:<br/>8 formas Perimetro 127,66 Area 127,65",
+                resumen);
+        }
+
+
     }
 }

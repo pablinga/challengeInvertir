@@ -32,7 +32,7 @@ namespace CodingChallenge.Data.Classes
 
         public const int Castellano = 1;
         public const int Ingles = 2;
-        public const int Francés = 3;
+        public const int Portugues = 3;
 
         #endregion
 
@@ -45,8 +45,8 @@ namespace CodingChallenge.Data.Classes
                     Thread.CurrentThread.CurrentUICulture = new CultureInfo("EN");
                     break;
                 case 3:
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("FR");
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("FR");
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("BR");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("BR");
                     break;
                 default:
                     Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ES");
@@ -65,65 +65,79 @@ namespace CodingChallenge.Data.Classes
                 // Hay por lo menos una forma
                 // HEADER
                 sb.Append("<h1>" + Resources.Resources.Header + "</h1>");
-
-                var numeroCuadrados = 0;
-                var numeroCirculos = 0;
-                var numeroTriangulos = 0;
-
-                var areaCuadrados = 0m;
-                var areaCirculos = 0m;
-                var areaTriangulos = 0m;
-
-                var perimetroCuadrados = 0m;
-                var perimetroCirculos = 0m;
-                var perimetroTriangulos = 0m;
+                List<DTOFigura> listFiguras = new List<DTOFigura>();
+                DTOFigura cuadrado = new DTOFigura() { tipo = Cuadrado };
+                DTOFigura circulo = new DTOFigura() { tipo = Circulo };
+                DTOFigura triangulo = new DTOFigura() { tipo = TrianguloEquilatero };
+                DTOFigura trapecio = new DTOFigura() { tipo = Trapecio };
+                DTOFigura rectangulo = new DTOFigura() { tipo = Rectangulo };
 
                 for (var i = 0; i < formas.Count; i++)
                 {
-                    if (formas[i].Tipo == Cuadrado)
+                    switch(formas[i].Tipo)
                     {
-                        numeroCuadrados++;
-                        areaCuadrados += formas[i].CalcularArea();
-                        perimetroCuadrados += formas[i].CalcularPerimetro();
-                    }
-                    else if (formas[i].Tipo == Circulo)
-                    {
-                        numeroCirculos++;
-                        areaCirculos += formas[i].CalcularArea();
-                        perimetroCirculos += formas[i].CalcularPerimetro();
-                    }
-                    else if (formas[i].Tipo == TrianguloEquilatero)
-                    {
-                        numeroTriangulos++;
-                        areaTriangulos += formas[i].CalcularArea();
-                        perimetroTriangulos += formas[i].CalcularPerimetro();
-                    }
+                        case Cuadrado:
+                            cuadrado.cantidad++;
+                            cuadrado.areaTotal += formas[i].CalcularArea();
+                            cuadrado.perimetroTotal += formas[i].CalcularPerimetro();
+                            break;
+                        case Circulo:
+                            circulo.cantidad++;
+                            circulo.areaTotal += formas[i].CalcularArea();
+                            circulo.perimetroTotal += formas[i].CalcularPerimetro();
+                            break;
+                        case TrianguloEquilatero:
+                            triangulo.cantidad++;
+                            triangulo.areaTotal += formas[i].CalcularArea();
+                            triangulo.perimetroTotal += formas[i].CalcularPerimetro();
+                            break;
+                        case Trapecio:
+                            trapecio.cantidad++;
+                            trapecio.areaTotal += formas[i].CalcularArea();
+                            trapecio.perimetroTotal += formas[i].CalcularPerimetro();
+                            break; 
+                        case Rectangulo:
+                            rectangulo.cantidad++;
+                            rectangulo.areaTotal += formas[i].CalcularArea();
+                            rectangulo.perimetroTotal += formas[i].CalcularPerimetro();
+                            break;
+                    }                    
                 }
+                listFiguras.Add(cuadrado);
+                listFiguras.Add(circulo);
+                listFiguras.Add(triangulo);
+                listFiguras.Add(trapecio);
+                listFiguras.Add(rectangulo);
 
-                sb.Append(ObtenerLinea(numeroCuadrados, areaCuadrados, perimetroCuadrados, Cuadrado));
-                sb.Append(ObtenerLinea(numeroCirculos, areaCirculos, perimetroCirculos, Circulo));
-                sb.Append(ObtenerLinea(numeroTriangulos, areaTriangulos, perimetroTriangulos, TrianguloEquilatero));
-
-                // FOOTER
-                sb.Append("TOTAL:<br/>");
-                sb.Append(formas.Count + " " + Resources.Resources.Shapes + " ");
-                sb.Append(Resources.Resources.Perimeter+ " " + (perimetroCuadrados + perimetroTriangulos + perimetroCirculos).ToString("#.##") + " ");
-                sb.Append("Area " + (areaCuadrados + areaCirculos + areaTriangulos).ToString("#.##"));
+                ObtenerLinea(sb, listFiguras);
+                
             }
 
             return sb.ToString();
         }
 
-        private static string ObtenerLinea(int cantidad, decimal area, decimal perimetro, int tipo)
+        private static void ObtenerLinea(StringBuilder sb, List<DTOFigura> listFiguras)
         {
-            if (cantidad > 0)
+            var totalPerimetro = 0m;
+            var totalArea = 0m;
+            var totalCantidad = 0;
+            foreach (var figura in listFiguras)
             {
-                return $"{cantidad} {TraducirForma(tipo, cantidad)} | Area {area:#.##} | {Resources.Resources.Perimeter} {perimetro:#.##} <br/>";
+                if (figura.cantidad > 0)
+                {
+                    sb.Append($"{figura.cantidad} {TraducirForma(figura.tipo, figura.cantidad)} | {Resources.Resources.Area} {figura.areaTotal:#.##} | {Resources.Resources.Perimeter} {figura.perimetroTotal:#.##} <br/>");
+                    totalCantidad += figura.cantidad;
+                    totalPerimetro += figura.perimetroTotal;
+                    totalArea += figura.areaTotal;
+                }
             }
-
-            return string.Empty;
+            sb.Append(Resources.Resources.Total + ":<br/>");
+            sb.Append(totalCantidad + " " + Resources.Resources.Shapes + " ");
+            sb.Append(Resources.Resources.Perimeter + " " + (totalPerimetro).ToString("#.##") + " ");
+            sb.Append(Resources.Resources.Area + " " + (totalArea).ToString("#.##"));
         }
 
+    
         private static string TraducirForma(int tipo, int cantidad)
         {
             switch (tipo)
@@ -134,9 +148,22 @@ namespace CodingChallenge.Data.Classes
                     return cantidad == 1 ? Resources.Resources.Circle : Resources.Resources.Circles;
                 case TrianguloEquilatero:
                     return cantidad == 1 ? Resources.Resources.Triangle : Resources.Resources.Triangles;
+                case Trapecio:
+                    return cantidad == 1 ? Resources.Resources.Trapeze : Resources.Resources.Trapezoids;
+                case Rectangulo:
+                    return cantidad == 1 ? Resources.Resources.Rectangle : Resources.Resources.Rectangles;
             }
 
             return string.Empty;
         }
+
+        private class DTOFigura
+        {
+            public int cantidad { get; set; }
+            public decimal areaTotal { get; set; }
+            public decimal perimetroTotal { get; set; }
+            public int tipo { get; set; }
+        }
+
     }
 }
